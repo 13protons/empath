@@ -1,8 +1,8 @@
 {
-  "name": "chacun",
+  "name": "empath",
   "version": "0.0.1",
   "author": "Alan Languirand <alanlanguirand@quickenloans.com>",
-  "description": "A simple web browser to simulate what it's like to browse the web with various forms of visual imparement",
+  "description": "See the web through the eyes of others",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
