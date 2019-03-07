@@ -1,8 +1,29 @@
 <template>
-  <div>
-    <button @click="back">back</button>
-    <input types="text" v-model="address" />
-    <button @click="gotoUrl(address)" >Go!</button>
+  <div id="addressBar" v-on:keyup.enter="handleEnter">
+    <b-field grouped>
+      <p class="control">
+        <button class="button is-white" @click="back">
+            <i class="material-icons">
+              arrow_back
+            </i>
+        </button>
+
+      </p>
+      <b-input placeholder="Enter a URL" expanded
+          type="text"
+          v-model="address"
+          :loading="isLoading"
+          >
+          <!-- icon="language" -->
+      </b-input>
+      <p class="control">
+        <button class="button is-white" @click="openPanel">
+          <i class="material-icons">
+              more_vert
+          </i>
+        </button>
+      </p>
+    </b-field>
   </div>
 </template>
 
@@ -18,7 +39,7 @@
       };
     },
     computed: {
-      ...mapGetters(['url'])
+      ...mapGetters(['url', 'isLoading'])
     },
     watch: {
       url(url) {
@@ -26,19 +47,28 @@
       }
     },
     methods: {
-      ...mapActions(['visit']),
+      ...mapActions(['visit', 'openPanel']),
       gotoUrl(url) {
+        console.log('visiting', url);
         this.visit(url);
         // this.$store.dispatch('visit', url);
+      },
+      handleEnter() {
+        this.gotoUrl(this.address);
+        // console.log('keyup', e);
       },
       back() {
         EventBus.$emit('back');
       }
     },
     mounted() {
-      this.url = this.$store.state.Url.url;
+      this.address = this.$store.state.Url.url;
     }
   };
 </script>
 
-<style></style>
+<style>
+#addressBar {
+  margin: .25em;
+}
+</style>

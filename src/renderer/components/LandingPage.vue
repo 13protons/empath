@@ -3,21 +3,33 @@
     <div class="header">
       <top-bar />
     </div>
+    
     <div class="main">
       <guest />
+    </div>
+
+    <div id="panel" v-if="isPanelOpen">
+      <access />
     </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   import TopBar from './Header.vue';
+  import Access from './A11y.vue';
   import Guest from './Guest.vue';
 
   export default {
     name: 'landing-page',
+    computed: {
+      ...mapGetters(['isPanelOpen'])
+    },
     components: {
       TopBar,
-      Guest
+      Guest,
+      Access
     }
   };
 </script>
@@ -26,6 +38,15 @@
   body {
     margin: 0;
     padding: 0;
+  }
+
+  #panel {
+    position: absolute;
+    right: 0px;
+    width: 80%;
+    height: 100vh;
+    background-color: white;
+    border-left: 1px solid gray;
   }
 
   #wrapper {

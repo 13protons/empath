@@ -31,7 +31,9 @@
     },
     methods: {
       back() {
-        this.$refs.guest.goBack();
+        if (this.$refs.guest.canGoBack()) {
+          this.$refs.guest.goBack();
+        }
       },
       forward() {
         this.$refs.guest.goForward();
@@ -49,9 +51,20 @@
     mounted() {
       console.log(this.$refs.guest.loadURL);
       this.$refs.guest.addEventListener('will-navigate', (data) => {
-        console.log('nav started', data.url);
         this.$store.dispatch('visit', data.url);
       });
+      this.$refs.guest.addEventListener('did-navigate', (data) => {
+        this.$store.dispatch('visit', data.url);
+      });
+
+      this.$refs.guest.addEventListener('did-start-loading', () => {
+        this.$store.dispatch('startLoading');
+      });
+
+      this.$refs.guest.addEventListener('did-stop-loading', () => {
+        this.$store.dispatch('stopLoading');
+      });
+
       EventBus.$on('back', this.back);
       EventBus.$on('toggleBlur', () => {
         this.isBlurry = !this.isBlurry;
@@ -69,6 +82,10 @@
 
 .blur {
   filter: blur(4px);
+}
+
+.grayscale {
+  filter: grayscale(1);
 }
 
 #guest {
