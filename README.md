@@ -1,6 +1,20 @@
 # chacun
 
-> A simple web browser to simulate what it's like to browse the web with various forms of visual imparement
+See the web through the eyes of others
+
+### A simple web browser
+
+![Main](static/main_ss.png)
+
+### With optional lenses
+
+![Main](static/access_ss.png)
+
+### To help you see the web as others do
+
+![Main](static/blurred_ss.png)
+
+> Note: this project is in early stages. Drop a line if you'd like to help out!
 
 #### Build Setup
 
