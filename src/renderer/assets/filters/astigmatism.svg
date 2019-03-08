@@ -15,10 +15,12 @@
       </metadata>
 
       <!-- Make 2 copies of course and retain source -->
-      <feOffset in="SourceGraphic" dx="0" dy="0" result="O1"/>
-      <feOffset in="SourceGraphic" dx="2" dy="0" result="L1"/>
+      <feOffset id="astigmatism_source" in="SourceGraphic" dx="0" dy="0" result="O1"/>
+      <feOffset id="astigmatism_offset_one" in="SourceGraphic" dx="2" dy="0" result="L1"/>
       <feOffset in="SourceGraphic" dx="-2" dy="0" result="R1"/>
     
+      
+
       <!-- Right duplication -->
       <feMorphology operator="erode" radius="1" in="R1" resulst="R2"/>
 
@@ -44,5 +46,14 @@
           <feMergeNode in="R4"/>
       </feMerge>
     </filter>
+    <!-- <animate 
+        xlink:href="#astigmatism_offset_one"
+        id="anim-offset"
+        attributeName="dx"
+        from="0"
+        to="5"
+        dur="5s"
+        fill="freeze"
+      /> -->
   </defs>
 </svg>

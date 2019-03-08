@@ -1,22 +1,22 @@
 const files = require.context('@/assets/filters', false, /\.svg$/);
 const filters = [];
 
-var oParser = new DOMParser();
+const oParser = new DOMParser();
 
 files.keys().forEach((key) => {
-  console.log('found filter', key)
-  var oDOM = oParser.parseFromString(files(key), "application/xml");
+  console.log('found filter', key);
+  const oDOM = oParser.parseFromString(files(key), 'application/xml');
   console.log('desc', oDOM.querySelector('desc').textContent);
 
-  var f = Array.from(oDOM.querySelectorAll('filter')).map(function(item){
+  const f = Array.from(oDOM.querySelectorAll('filter')).map((item) => {
     return {
       id: item.id,
       description: item.querySelector('desc').textContent,
       label: item.querySelector('label').textContent
     };
   })
-  
-  var output = {
+
+  const output = {
     title: oDOM.querySelector('title').textContent,
     description: oDOM.querySelector('desc').textContent,
     author: oDOM.querySelector('author').textContent,
@@ -30,7 +30,7 @@ files.keys().forEach((key) => {
 });
 
 const state = {
-  list: [],
+  list: filters,
   active: []
 };
 
