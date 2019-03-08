@@ -21,17 +21,23 @@
     </nav>
 
     <fuzzy />
+    <hr/>
+    <button class="button is-warning is-fullwidth" @click="clear">Clear All</button>
   </div>
 </template>
 
 <script>
   import { mapActions } from 'vuex';
+  import EventBus from '@/EventBus';
   import Fuzzy from './A11y/Fuzzy.vue';
 
   export default {
     name: 'A11y',
     methods: {
-      ...mapActions(['closePanel'])
+      ...mapActions(['closePanel']),
+      clear() {
+        EventBus.$emit('applyFilter', '');
+      }
     },
     components: {
       Fuzzy

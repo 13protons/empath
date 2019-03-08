@@ -1,6 +1,6 @@
 <template>
   <div id="fuzzy" class="action">
-    <button @click="toggle">Toggle Blur</button>
+    <button @click="toggle" class="button">Add Astigmatism</button>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
     name: 'Fuzzy',
     methods: {
       toggle() {
-        EventBus.$emit('toggleBlur');
+        EventBus.$emit('applyFilter', 'astigmatism');
       }
     }
   };

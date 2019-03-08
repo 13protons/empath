@@ -85,8 +85,12 @@ let rendererConfig = {
           }
         }
       },
+      { 
+        test: /\.svg$/, 
+        loader: 'raw-loader' 
+      },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         use: {
           loader: 'url-loader',
           query: {

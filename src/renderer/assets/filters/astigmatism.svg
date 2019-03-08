@@ -1,0 +1,48 @@
+<svg>
+  <title>Astigmatism</title>
+  <desc>Simulated low level myopic astigmatism by blending 2 blurred, offset, and eroded copies along a horizontal axis</desc>
+  <metadata>
+    <author>Alan Languirand - alan@13protons.com</author>
+    <version>0.0.1</version>
+    <updated>2019-03-08T12:50:24.662Z</updated>
+  </metadata>
+
+  <defs>
+    <filter id="astigmatism"  x="0" y="0" width="100%" height="100%">
+      <desc>Astimatism 1</desc>
+      <metadata>
+        <label>Mild Astigmatism</label>
+      </metadata>
+
+      <!-- Make 2 copies of course and retain source -->
+      <feOffset in="SourceGraphic" dx="0" dy="0" result="O1"/>
+      <feOffset in="SourceGraphic" dx="2" dy="0" result="L1"/>
+      <feOffset in="SourceGraphic" dx="-2" dy="0" result="R1"/>
+    
+      <!-- Right duplication -->
+      <feMorphology operator="erode" radius="1" in="R1" resulst="R2"/>
+
+      <feComponentTransfer in="R2" result="R3">
+        <feFuncA type="table" tableValues="0 0.3"/>
+      </feComponentTransfer>
+
+      <feGaussianBlur in="R3" result="R4" stdDeviation="0" />
+
+      <!-- Left duplication -->
+      <feMorphology operator="erode" radius="1" in="L1" resulst="L2"/>
+
+      <feComponentTransfer in="L2" result="L3">
+        <feFuncA type="table" tableValues="0 0.3"/>
+      </feComponentTransfer>
+
+      <feGaussianBlur in="L3" result="L4" stdDeviation="0" />
+      
+      <!-- Merge results -->
+      <feMerge>
+          <feMergeNode in="O1"/>
+          <feMergeNode in="L1"/>
+          <feMergeNode in="R4"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

@@ -1,7 +1,5 @@
 <template>
-  <div class="guest" :class="{
-    blur: isBlurry
-  }">
+  <div class="guest" :style="styleObject">
     <webview id="guest" ref="guest" src="http://github.com"></webview>
   </div>
 </template>
@@ -14,11 +12,17 @@
     name: 'Guest',
     data() {
       return {
-        isBlurry: false
+        isBlurry: false,
+        filter: ''
       };
     },
     computed: {
-      ...mapGetters(['url'])
+      ...mapGetters(['url']),
+      styleObject() {
+        return {
+          filter: `url(#${this.filter})`
+        };
+      }
     },
     watch: {
       // whenever question changes, this function will run
@@ -30,6 +34,10 @@
       }
     },
     methods: {
+      setFilterId(data) {
+        console.log('setting filter id to ', data);
+        this.filter = data;
+      },
       back() {
         if (this.$refs.guest.canGoBack()) {
           this.$refs.guest.goBack();
@@ -66,9 +74,7 @@
       });
 
       EventBus.$on('back', this.back);
-      EventBus.$on('toggleBlur', () => {
-        this.isBlurry = !this.isBlurry;
-      });
+      EventBus.$on('applyFilter', this.setFilterId);
     }
   };
 </script>
