@@ -1,6 +1,6 @@
 <template>
   <div class="guest" :style="styleObject">
-    <webview id="guest" ref="guest" src="http://github.com"></webview>
+    <webview id="guest" ref="guest" src="https://en.wikipedia.org/wiki/Web_accessibility"></webview>
   </div>
 </template>
 

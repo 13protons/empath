@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "chacun",
-    "appId": "com.13protons.chacun",
+    "productName": "empath",
+    "appId": "com.13protons.empath",
     "directories": {
       "output": "build"
     },
