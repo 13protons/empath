@@ -11,13 +11,14 @@
     <div id="panel" v-if="isPanelOpen">
       <access />
     </div>
-    <div id="filters" v-html="svg"></div>
+    <div id="filters">
+      <div v-for="item in list" :key="item.raw" v-html="item.raw"></div>
+    </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
-  import filter from '@/assets/filters/astigmatism.svg';
 
   import TopBar from './Header.vue';
   import Access from './A11y.vue';
@@ -26,12 +27,10 @@
   export default {
     name: 'landing-page',
     data() {
-      return {
-        svg: filter
-      };
+      return {};
     },
     computed: {
-      ...mapGetters(['isPanelOpen'])
+      ...mapGetters(['isPanelOpen', 'list'])
     },
     components: {
       TopBar,
@@ -46,13 +45,14 @@
     margin: 0;
     padding: 0;
   }
-  #filters {
+  #filters, #filters svg {
     height: 0
   }
   #panel {
     position: absolute;
     right: 0px;
     width: 80%;
+    max-width: 480px;
     height: 100vh;
     background-color: white;
     border-left: 1px solid gray;

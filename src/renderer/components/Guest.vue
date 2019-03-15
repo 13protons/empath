@@ -17,10 +17,10 @@
       };
     },
     computed: {
-      ...mapGetters(['url']),
+      ...mapGetters(['url', 'active']),
       styleObject() {
         return {
-          filter: `url(#${this.filter})`
+          filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
         };
       }
     },
@@ -31,9 +31,15 @@
           this.address = url;
           this.$refs.guest.loadURL(url);
         }
+      },
+      active(active) {
+        this.applyFilters(active);
       }
     },
     methods: {
+      applyFilters(filters) {
+        this.setFilterId(filters[0]);
+      },
       setFilterId(data) {
         console.log('setting filter id to ', data);
         this.filter = data;
@@ -74,7 +80,6 @@
       });
 
       EventBus.$on('back', this.back);
-      EventBus.$on('applyFilter', this.setFilterId);
     }
   };
 </script>
