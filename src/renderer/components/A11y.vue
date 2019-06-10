@@ -21,8 +21,8 @@
     </nav>
 
     <!-- <fuzzy /> -->
-    <div v-for="item in list" :key="item.raw" class="action">
-      <h3>{{item.title}}</h3>
+    <div v-for="item in list" :key="item.id" class="action">
+      <h3>{{item.title}} - {{item.id}}</h3>
       <small class="desc">{{item.description}}</small>
 
       <button v-for="control in item.controls"

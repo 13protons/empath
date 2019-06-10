@@ -1,9 +1,9 @@
+const cuid = require('cuid');
 const files = require.context('@/assets/filters', false, /\.svg$/);
-const filters = [];
 
-const oParser = new DOMParser();
+const filters = files.keys().map((key) => {
+  const oParser = new DOMParser();
 
-files.keys().forEach((key) => {
   console.log('found filter', key);
   const oDOM = oParser.parseFromString(files(key), 'application/xml');
   console.log('desc', oDOM.querySelector('desc').textContent);
@@ -14,17 +14,16 @@ files.keys().forEach((key) => {
     label: item.querySelector('label').textContent
   }));
 
-  const output = {
+  return {
     title: oDOM.querySelector('title').textContent,
     description: oDOM.querySelector('desc').textContent,
     author: oDOM.querySelector('author').textContent,
     version: oDOM.querySelector('version').textContent,
     lastUpdated: oDOM.querySelector('updated').textContent,
     raw: files(key),
-    controls: f
+    controls: f,
+    id: cuid()
   };
-
-  filters.push(output);
 });
 
 console.log('filters', filters);
@@ -36,7 +35,8 @@ const state = {
 
 const getters = {
   list(state) {
-    return state.list;
+    console.log('retrieve state', state.list);
+    return filters;
   },
   active(state) {
     return state.active;
