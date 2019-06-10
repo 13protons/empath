@@ -30,6 +30,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import EventBus from '@/EventBus';
+  const normalizeUrl = require('normalize-url');
 
   export default {
     name: 'AddressBar',
@@ -39,7 +40,10 @@
       };
     },
     computed: {
-      ...mapGetters(['url', 'isLoading'])
+      ...mapGetters(['url', 'isLoading']),
+      // qualifiedUrl() {
+
+      // }
     },
     watch: {
       url(url) {
@@ -50,7 +54,7 @@
       ...mapActions(['visit', 'openPanel']),
       gotoUrl(url) {
         console.log('visiting', url);
-        this.visit(url);
+        this.visit(normalizeUrl(url));
         // this.$store.dispatch('visit', url);
       },
       handleEnter() {
