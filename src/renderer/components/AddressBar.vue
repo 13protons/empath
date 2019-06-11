@@ -9,13 +9,24 @@
         </button>
 
       </p>
-      <b-input placeholder="Enter a URL" expanded
-          type="text"
-          v-model="address"
-          :loading="isLoading"
-          >
-          <!-- icon="language" -->
-      </b-input>
+      
+      <b-field expanded>
+        <b-autocomplete
+            expanded
+            rounded
+            v-model="address"
+            :data="filteredDataArray"
+            placeholder="Enter a URL"
+            :loading="isLoading"
+            :keep-first="true"
+            :open-on-focus="false"
+            @select="option => selected = option">
+            <template slot="header">
+              <span> Search the web for "{{address}}" </span>
+            </template>
+        </b-autocomplete>
+      </b-field>
+
       <p class="control">
         <button class="button is-white" @click="openPanel">
           <i class="material-icons">
@@ -30,20 +41,38 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import EventBus from '@/EventBus';
-  const normalizeUrl = require('normalize-url');
 
   export default {
     name: 'AddressBar',
     data() {
       return {
-        address: ''
+        address: '',
+        data: [
+          'Angular',
+          'Angular 2',
+          'Aurelia',
+          'Backbone',
+          'Ember',
+          'jQuery',
+          'Meteor',
+          'Node.js',
+          'Polymer',
+          'React',
+          'RxJS',
+          'Vue.js'
+        ],
       };
     },
     computed: {
       ...mapGetters(['url', 'isLoading']),
-      // qualifiedUrl() {
-
-      // }
+      filteredDataArray() {
+        return this.data.filter((option) => {
+          return option
+            .toString()
+            .toLowerCase()
+            .indexOf(this.address.toLowerCase()) >= 0;
+        });
+      }
     },
     watch: {
       url(url) {
@@ -51,10 +80,10 @@
       }
     },
     methods: {
-      ...mapActions(['visit', 'openPanel']),
+      ...mapActions(['visit', 'openPanel', 'clearHistory']),
       gotoUrl(url) {
         console.log('visiting', url);
-        this.visit(normalizeUrl(url));
+        this.visit(url);
         // this.$store.dispatch('visit', url);
       },
       handleEnter() {

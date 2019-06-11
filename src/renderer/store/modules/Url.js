@@ -1,3 +1,6 @@
+const normalizeUrl = require('normalize-url');
+const {parse} = require('tldjs');
+
 const state = {
   url: 'http://github.com',
   loading: false,
@@ -30,9 +33,10 @@ const mutations = {
 
 const actions = {
   visit(context, address) {
-    // do something async
-    console.log('got data', address);
-    context.commit('visit', address);
+    // normalize url
+    let url = createValidUrlFromFragment(address);
+    context.commit('visit', url);
+    
   },
   toggleLoading(context) {
     context.commit('setLoadState', !context.state.loading);
@@ -48,7 +52,8 @@ const actions = {
   },
   closePanel(context) {
     context.commit('setPanelState', false);
-  }
+  },
+  clearHistory() { }
 };
 
 export default {
@@ -57,3 +62,39 @@ export default {
   mutations,
   actions,
 };
+
+function isValidUrl(fragment) {
+  try {
+    
+    let url = new URL(fragment);
+  } catch(e) {
+    console.log('invalid fragment: ', fragment)
+    return false;
+  }
+
+  console.log('ok fragment: ', fragment)
+  return true;
+}
+
+function createValidUrlFromFragment(fragment) {
+
+  let candidate = parse(fragment);
+  console.log('parsed: ', candidate);
+  if ((candidate.tldExists === false || candidate.domain === null) && candidate.isIp === false) {
+    // search for it
+    console.log('should search for ', fragment)
+    return `https://google.com/search?q=${encodeURI(fragment)}`
+  } 
+  return normalizeUrl(fragment);
+
+}
+
+// if (isValidUrl(address)) {
+//   // visit it! what are you waiting for?!
+//   context.commit('visit', address);
+// } else if (isValidUrl(normalized)) {
+//   context.commit('visit', normalized);
+// } else {
+//   // if pre/post normalized urls are BOTH invalid, then search the web with pre normalized
+//   context.commit('visit', `https://google.com/search?q=${encodeURI(address)}`);
+// }
