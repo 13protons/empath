@@ -19,7 +19,9 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "npm run lint:fix",
+    "test:basic": "mocha --compilers js:babel-register ./test/unit/**/*.spec.js",
+    "test:basic-watch": "mocha --compilers js:babel-register ./test/unit/**/*.spec.js -w"
   },
   "build": {
     "productName": "empath",
@@ -58,6 +60,7 @@
   "dependencies": {
     "buefy": "^0.7.3",
     "cuid": "^2.1.6",
+    "lodash": "^4.17.11",
     "material-design-icons": "^3.0.1",
     "normalize-url": "^4.3.0",
     "tldjs": "^2.3.1",

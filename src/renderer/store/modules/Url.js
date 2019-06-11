@@ -1,5 +1,4 @@
-const normalizeUrl = require('normalize-url');
-const {parse} = require('tldjs');
+import { createValidUrlFromFragment } from './url-util';
 
 const state = {
   url: 'http://github.com',
@@ -34,9 +33,14 @@ const mutations = {
 const actions = {
   visit(context, address) {
     // normalize url
-    let url = createValidUrlFromFragment(address);
+    const urlParts = createValidUrlFromFragment(address);
+    let url = address;
+    if (urlParts.isSearch) {
+      url = `https://google.com/search?q=${urlParts.query}`;
+    } else {
+      url = urlParts.normalized;
+    }
     context.commit('visit', url);
-    
   },
   toggleLoading(context) {
     context.commit('setLoadState', !context.state.loading);
@@ -62,32 +66,6 @@ export default {
   mutations,
   actions,
 };
-
-function isValidUrl(fragment) {
-  try {
-    
-    let url = new URL(fragment);
-  } catch(e) {
-    console.log('invalid fragment: ', fragment)
-    return false;
-  }
-
-  console.log('ok fragment: ', fragment)
-  return true;
-}
-
-function createValidUrlFromFragment(fragment) {
-
-  let candidate = parse(fragment);
-  console.log('parsed: ', candidate);
-  if ((candidate.tldExists === false || candidate.domain === null) && candidate.isIp === false) {
-    // search for it
-    console.log('should search for ', fragment)
-    return `https://google.com/search?q=${encodeURI(fragment)}`
-  } 
-  return normalizeUrl(fragment);
-
-}
 
 // if (isValidUrl(address)) {
 //   // visit it! what are you waiting for?!
