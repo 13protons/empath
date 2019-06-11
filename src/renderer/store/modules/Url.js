@@ -36,7 +36,7 @@ const actions = {
     const urlParts = createValidUrlFromFragment(address);
     let url = address;
     if (urlParts.isSearch) {
-      url = `https://google.com/search?q=${urlParts.query}`;
+      url = `https://duckduckgo.com/?q=${urlParts.query}`;
     } else {
       url = urlParts.normalized;
     }
@@ -57,7 +57,6 @@ const actions = {
   closePanel(context) {
     context.commit('setPanelState', false);
   },
-  clearHistory() { }
 };
 
 export default {

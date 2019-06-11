@@ -342,8 +342,6 @@ function toSearchQuery(input) {
 export function createValidUrlFromFragment(fragment) {
   if (typeof fragment !== 'string') { throw new TypeError('can only create urls from strings'); }
   const metrics = tldjs.parse(fragment);
-  console.log('analyze fragment', fragment, metrics);
-
 
   const base = {
     isSearch: false,
@@ -353,26 +351,21 @@ export function createValidUrlFromFragment(fragment) {
   };
 
   if (metrics.isIp) {
-    console.log('is an ip address: ', fragment)
     return Object.assign(base, {
       normalized: urlUtil.getUrlFromInput(fragment)
     });
   }
 
   if (metrics.tldExists) {
-    console.log('may be valid: ', fragment)
-    console.log('has a tld, ship it: ', fragment)
     return Object.assign(base, {
       normalized: urlUtil.getUrlFromInput(fragment)
     });
   }
-  
+
   if (urlUtil.canParseURL(fragment) && urlUtil.isURL(fragment)) {
-    console.log('good all by myself');
     return Object.assign(base, { normalized: fragment });
   }
 
-  console.log('nvm, gotta search: ', fragment)
   return Object.assign(base, {
     isSearch: true,
     query: toSearchQuery(fragment)

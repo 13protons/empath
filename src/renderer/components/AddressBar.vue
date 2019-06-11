@@ -9,23 +9,16 @@
         </button>
 
       </p>
-      
-      <b-field expanded>
-        <b-autocomplete
-            expanded
-            rounded
-            v-model="address"
-            :data="filteredDataArray"
-            placeholder="Enter a URL"
-            :loading="isLoading"
-            :keep-first="true"
-            :open-on-focus="false"
-            @select="option => selected = option">
-            <template slot="header">
-              <span> Search the web for "{{address}}" </span>
-            </template>
-        </b-autocomplete>
-      </b-field>
+
+      <b-input placeholder="Enter a URL or Search the Web"
+          expanded
+          rounded
+          type="text"
+          v-model="address"
+          :loading="isLoading"
+          >
+          <!-- icon="language" -->
+      </b-input>
 
       <p class="control">
         <button class="button is-white" @click="openPanel">
@@ -47,32 +40,10 @@
     data() {
       return {
         address: '',
-        data: [
-          'Angular',
-          'Angular 2',
-          'Aurelia',
-          'Backbone',
-          'Ember',
-          'jQuery',
-          'Meteor',
-          'Node.js',
-          'Polymer',
-          'React',
-          'RxJS',
-          'Vue.js'
-        ],
       };
     },
     computed: {
-      ...mapGetters(['url', 'isLoading']),
-      filteredDataArray() {
-        return this.data.filter((option) => {
-          return option
-            .toString()
-            .toLowerCase()
-            .indexOf(this.address.toLowerCase()) >= 0;
-        });
-      }
+      ...mapGetters(['url', 'isLoading'])
     },
     watch: {
       url(url) {
@@ -80,7 +51,7 @@
       }
     },
     methods: {
-      ...mapActions(['visit', 'openPanel', 'clearHistory']),
+      ...mapActions(['visit', 'openPanel']),
       gotoUrl(url) {
         console.log('visiting', url);
         this.visit(url);
