@@ -1,3 +1,5 @@
+import { createValidUrlFromFragment } from './url-util';
+
 const state = {
   url: 'http://github.com',
   loading: false,
@@ -30,9 +32,15 @@ const mutations = {
 
 const actions = {
   visit(context, address) {
-    // do something async
-    console.log('got data', address);
-    context.commit('visit', address);
+    // normalize url
+    const urlParts = createValidUrlFromFragment(address);
+    let url = address;
+    if (urlParts.isSearch) {
+      url = `https://duckduckgo.com/?q=${urlParts.query}`;
+    } else {
+      url = urlParts.normalized;
+    }
+    context.commit('visit', url);
   },
   toggleLoading(context) {
     context.commit('setLoadState', !context.state.loading);
@@ -48,7 +56,7 @@ const actions = {
   },
   closePanel(context) {
     context.commit('setPanelState', false);
-  }
+  },
 };
 
 export default {
@@ -57,3 +65,13 @@ export default {
   mutations,
   actions,
 };
+
+// if (isValidUrl(address)) {
+//   // visit it! what are you waiting for?!
+//   context.commit('visit', address);
+// } else if (isValidUrl(normalized)) {
+//   context.commit('visit', normalized);
+// } else {
+//   // if pre/post normalized urls are BOTH invalid, then search the web with pre normalized
+//   context.commit('visit', `https://google.com/search?q=${encodeURI(address)}`);
+// }

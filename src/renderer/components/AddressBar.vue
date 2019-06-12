@@ -9,13 +9,17 @@
         </button>
 
       </p>
-      <b-input placeholder="Enter a URL" expanded
+
+      <b-input placeholder="Enter a URL or Search the Web"
+          expanded
+          rounded
           type="text"
           v-model="address"
           :loading="isLoading"
           >
           <!-- icon="language" -->
       </b-input>
+
       <p class="control">
         <button class="button is-white" @click="openPanel">
           <i class="material-icons">
@@ -35,7 +39,7 @@
     name: 'AddressBar',
     data() {
       return {
-        address: ''
+        address: '',
       };
     },
     computed: {
