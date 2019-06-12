@@ -35,13 +35,25 @@
       <hr/>
     </div>
 
+    <div class="action">
+      <h3>Audio Alteration</h3>
+      <small class="desc">Change the page volume</small>
+
+      <button class='button is-success' @click='setVolume(1)'>No Hearing Loss</button>
+      <button class='button is-warning' @click='setVolume(.2)'>Mild Hearing Loss</button>
+      <button class='button is-warning' @click='setVolume(.05)'>Moderate Hearing Loss</button>
+      <button class='button is-danger' @click='setVolume(.01)'>Severe Hearing Loss</button>
+
+      <hr/>
+    </div>
+
     <button class="button is-warning is-fullwidth" @click="clear">Clear All</button>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  // import EventBus from '@/EventBus';
+  import EventBus from '@/EventBus';
   // import Fuzzy from './A11y/Fuzzy.vue';
 
   export default {
@@ -53,6 +65,9 @@
       ...mapActions(['closePanel', 'toggle', 'clear']),
       contains(id) {
         return this.active.indexOf(id) > -1;
+      },
+      setVolume(newVolume) {
+        EventBus.$emit('setVolume', newVolume);
       }
     },
     components: {
