@@ -1,3 +1,5 @@
+import EventBus from '@/EventBus';
+
 const cuid = require('cuid');
 const files = require.context('@/assets/filters', false, /\.svg$/);
 
@@ -30,7 +32,8 @@ console.log('filters', filters);
 
 const state = {
   list: filters,
-  active: []
+  active: [],
+  volume: 1,
 };
 
 const getters = {
@@ -40,6 +43,9 @@ const getters = {
   },
   active(state) {
     return state.active;
+  },
+  volume(state) {
+    return state.volume;
   }
 };
 
@@ -54,7 +60,7 @@ const mutations = {
   },
   removeAll(state) {
     state.active = [];
-  }
+  },
 };
 
 const actions = {
@@ -63,7 +69,8 @@ const actions = {
   },
   clear(context) {
     context.commit('removeAll');
-  }
+    EventBus.$emit('setVolume', 1);
+  },
 };
 
 export default {

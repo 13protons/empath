@@ -1,17 +1,17 @@
 <svg>
-  <title>Color Effects</title>
-  <desc>Common color related vision defects</desc>
+  <title>Protanopia</title>
+  <desc>Red-green color blindness</desc>
   <metadata>
-    <author>Alan Languirand - alan@13protons.com</author>
+    <author>Bob Wise</author>
     <version>0.0.1</version>
     <updated>2019-03-15T02:54:46.436Z</updated>
   </metadata>
 
   <defs>
-    <filter id="propantopia"  x="0" y="0" width="100%" height="100%">
-      <desc>propantopia</desc>
+    <filter id="protanopia_filter"  x="0" y="0" width="100%" height="100%">
+      <desc>Protanopia Filter</desc>
       <metadata>
-        <label>Model Red green color blindness</label>
+        <label>Protanopia</label>
       </metadata>
 
       <feColorMatrix
@@ -19,9 +19,10 @@
               type="matrix"
               values="0.567, 0.433, 0, 0, 0 0.558, 0.442, 0, 0, 0 0, 0.242, 0.758, 0, 0 0, 0, 0, 1, 0"
             />
-    
+
     </filter>
-    <!-- <animate 
+
+    <!-- <animate
         xlink:href="#astigmatism_offset_one"
         id="anim-offset"
         attributeName="dx"

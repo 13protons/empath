@@ -48,7 +48,7 @@ const actions = {
   },
   closePanel(context) {
     context.commit('setPanelState', false);
-  }
+  },
 };
 
 export default {

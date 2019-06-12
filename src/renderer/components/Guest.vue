@@ -1,6 +1,6 @@
 <template>
   <div class="guest" :style="styleObject">
-    <webview id="guest" ref="guest" src="https://en.wikipedia.org/wiki/Web_accessibility"></webview>
+    <webview id="guest" ref="guest" preload='file:///Users/bwise/code/empath/src/renderer/preload.js' src="https://www.youtube.com/watch?v=PbBZjT7nuoA"></webview>
   </div>
 </template>
 
@@ -25,7 +25,6 @@
       }
     },
     watch: {
-      // whenever question changes, this function will run
       url(url, oldUrl) {
         if (url !== oldUrl) {
           this.address = url;
@@ -34,7 +33,7 @@
       },
       active(active) {
         this.applyFilters(active);
-      }
+      },
     },
     methods: {
       applyFilters(filters) {
@@ -60,6 +59,11 @@
       },
       unmute() {
         this.$refs.guest.setAudioMuted(false);
+      },
+      setVolume(param) {
+        if (this.$refs.guest) {
+          this.$refs.guest.send("set-volume", param);
+        }
       }
     },
     mounted() {
@@ -79,7 +83,12 @@
         this.$store.dispatch('stopLoading');
       });
 
+      this.$refs.guest.addEventListener('dom-ready', () => {
+
+      });
+
       EventBus.$on('back', this.back);
+      EventBus.$on('setVolume', this.setVolume);
     }
   };
 </script>
