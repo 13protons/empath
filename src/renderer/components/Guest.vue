@@ -1,19 +1,22 @@
 <template>
   <div class="guest" :style="styleObject">
-    <webview id="guest" ref="guest" preload='file:///Users/bwise/code/empath/src/renderer/preload.js' src="https://www.youtube.com/watch?v=PbBZjT7nuoA"></webview>
+    <webview id="guest" ref="guest" :preload="preload" :src="defaultSrc"></webview>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
   import EventBus from '@/EventBus';
+  const contextMenu = require('electron-context-menu');
 
   export default {
     name: 'Guest',
     data() {
       return {
         isBlurry: false,
-        filter: ''
+        filter: '',
+        preload: 'file:///Users/bwise/code/empath/src/renderer/preload.js',
+        defaultSrc: 'http://duckduckgo.com'
       };
     },
     computed: {
@@ -62,7 +65,7 @@
       },
       setVolume(param) {
         if (this.$refs.guest) {
-          this.$refs.guest.send("set-volume", param);
+          this.$refs.guest.send('set-volume', param);
         }
       }
     },
@@ -85,6 +88,11 @@
 
       this.$refs.guest.addEventListener('dom-ready', () => {
 
+      });
+
+      contextMenu({
+        window: this.$refs.guest,
+        showInspectElement: true
       });
 
       EventBus.$on('back', this.back);

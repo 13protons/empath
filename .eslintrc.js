@@ -30,6 +30,7 @@ module.exports = {
     'comma-dangle': 0,
     'dot-notation': 0,
     'no-console': 0,
-    'arrow-body-style': 1 
+    'arrow-body-style': 1,
+    
   }
 }

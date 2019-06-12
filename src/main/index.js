@@ -1,4 +1,6 @@
 import { app, BrowserWindow } from 'electron' // eslint-disable-line
+const contextMenu = require('electron-context-menu');
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -6,6 +8,14 @@ import { app, BrowserWindow } from 'electron' // eslint-disable-line
 if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\') // eslint-disable-line
 }
+
+contextMenu({
+	prepend: (defaultActions, params, browserWindow) => [{
+		label: 'Rainbow',
+		// Only show it when right-clicking images
+		visible: params.mediaType === 'image'
+	}]
+});
 
 let mainWindow;
 const winURL = process.env.NODE_ENV === 'development'
