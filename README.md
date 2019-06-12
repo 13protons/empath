@@ -4,43 +4,7 @@
 
 Empath is a simple web browser that uses `svg` filters to simulate visual imparements. 
 
-### Example: Desaturate Colors
-
-![Main](static/desaturate.jpg)
-
-### Example: Mild Astigmatism
-
-![Main](static/astigmatism.jpg)
-
-![Main](static/nyt_14Mar2019.jpg)
-
-### Effects defined as industry standard SVG filters
-
-```xml
-<svg>
-  <title>Desaturate</title>
-  <desc>Most colors are removed</desc>
-  <metadata>
-    <author>13protons</author>
-    <version>0.0.1</version>
-    <updated>2019-03-15T02:54:46.436Z</updated>
-  </metadata>
-
-  <defs>
-    <filter id="desaturate"  x="0" y="0" width="100%" height="100%">
-      <desc>Desaturate</desc>
-      <metadata>
-        <label>Remove Color</label>
-      </metadata>
-
-      <feColorMatrix in="SourceGraphic"
-        type="saturate"
-        values="0.2" />
-    
-    </filter>
-  </defs>
-</svg>
-```
+See [the website](https://13protons.github.io/empath/) for more info and visual examples.
 
 > Note: this project is in early stages. Drop a line if you'd like to help out!
 

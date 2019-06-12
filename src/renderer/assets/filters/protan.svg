@@ -1,0 +1,39 @@
+<svg>
+  <title>Protan</title>
+  <desc>Protan deficiency, or red type color blindness.</desc>
+  <metadata>
+    <author>Alan Languirand - alan@13protons.com</author>
+    <version>0.0.1</version>
+    <updated>2019-03-15T02:54:46.436Z</updated>
+    <example>http://unlimitedmemory.tripod.com/sitebuildercontent/sitebuilderfiles/ishihara38.pdf</example>
+  </metadata>
+
+  <defs>
+    <filter id="protanomaly"  x="0" y="0" width="100%" height="100%">
+      <desc>Protanomaly, or weakened ability to detect red colors</desc>
+      <metadata>
+        <label>See Less Red</label>
+      </metadata>
+
+      <feColorMatrix in="SourceGraphic"
+        type="matrix"
+        values="0 0 0 0 0
+                1 1 1 1 0
+                0 0 0 0 0
+                0 0 0 1 0" />
+    
+    </filter>
+
+    <filter id="protanopia"  x="0" y="0" width="100%" height="100%">
+      <desc>Protanopia, or virtually no ability detect red colors</desc>
+      <metadata>
+        <label>See No Red</label>
+      </metadata>
+
+      <feColorMatrix in="SourceGraphic"
+        type="saturate"
+        values="0.2" />
+    
+    </filter>
+  </defs>
+</svg>

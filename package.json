@@ -19,7 +19,8 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "npm run lint:fix",
+    "deploy": "gh-pages -d static"
   },
   "build": {
     "productName": "empath",
@@ -96,6 +97,7 @@
     "eslint-plugin-html": "^4.0.3",
     "eslint-plugin-import": "^2.12.0",
     "file-loader": "^1.1.11",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "inject-loader": "^4.0.1",
     "karma": "^2.0.2",
