@@ -19,11 +19,17 @@
           >
           <!-- icon="language" -->
       </b-input>
-
       <p class="control">
         <button class="button is-white" @click="openPanel">
           <i class="material-icons">
               more_vert
+          </i>
+        </button>
+      </p>
+      <p class="control">
+        <button class="button is-white" @click="openPanel">
+          <i class="material-icons">
+              accessibility
           </i>
         </button>
       </p>

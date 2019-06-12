@@ -41,12 +41,19 @@
 </script>
 
 <style lang="scss">
+  html {
+    box-sizing: border-box;
+  }
+  * {
+    box-sizing: inherit;
+  }
   body {
     margin: 0;
     padding: 0;
   }
   #filters, #filters svg {
-    height: 0
+    height: 0;
+    overflow: hidden;
   }
   #panel {
     position: absolute;
@@ -54,7 +61,7 @@
     width: 80%;
     max-width: 480px;
     height: 100vh;
-    background-color: white;
+    background-color: rgba(255, 255, 255, .85);
     border-left: 1px solid gray;
   }
 
