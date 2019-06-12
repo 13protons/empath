@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Empath</title>
+  <script src="https://unpkg.com/vue@2.1.8/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vue-markdown@2.2.4/dist/vue-markdown.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+  <link rel="stylesheet" href="./bulma.css">
+</head>
+
+<body>
+  <div id="app">
+
+<vue-markdown>
+  # Empath
+  
+  ## See the web through the eyes of others.
+  
+  Empath is a simple web browser that uses `svg` filters to simulate visual imparements.
+  
+  ### Example: Desaturate Colors
+  
+  ![Main](./assets/desaturate.jpg)
+  
+  ### Example: Mild Astigmatism
+  
+  ![Main](./assets/astigmatism.jpg)
+  
+  ![Main](./assets/nyt_14Mar2019.jpg)
+  
+  ### Effects defined as industry standard SVG filters
+</vue-markdown>
+<pre data-src="./assets/desaturate.svg"></pre>
+
+  </div>
+  <script>
+    Vue.use(VueMarkdown);
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          source: new Date().toLocaleTimeString(),
+          anchorAttrs: {
+            target: '_blank',
+            rel: 'noopener noreferrer nofollow'
+          }
+        }
+      },
+      mounted() {
+        setInterval(() => {
+          this.source = new Date().toLocaleTimeString();
+        }, 1000);
+      }
+    });
+  </script>
+</body>
+
+</html>
