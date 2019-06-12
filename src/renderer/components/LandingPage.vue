@@ -8,7 +8,10 @@
       <guest />
     </div>
 
-    <div id="panel" v-if="isPanelOpen">
+    <div class="panel" v-if="areOptionsOpen">
+      <guest-options />
+    </div>
+    <div class="panel" v-if="isPanelOpen">
       <access />
     </div>
     <div id="filters">
@@ -23,6 +26,7 @@
   import TopBar from './Header.vue';
   import Access from './A11y.vue';
   import Guest from './Guest.vue';
+  import GuestOptions from './Options.vue';
 
   export default {
     name: 'landing-page',
@@ -30,12 +34,13 @@
       return {};
     },
     computed: {
-      ...mapGetters(['isPanelOpen', 'list'])
+      ...mapGetters(['isPanelOpen', 'areOptionsOpen', 'list'])
     },
     components: {
       TopBar,
       Guest,
-      Access
+      Access,
+      GuestOptions
     }
   };
 </script>
@@ -55,7 +60,7 @@
     height: 0;
     overflow: hidden;
   }
-  #panel {
+  .panel {
     position: absolute;
     right: 0px;
     width: 80%;

@@ -3,7 +3,9 @@ import { createValidUrlFromFragment } from './url-util';
 const state = {
   url: 'http://github.com',
   loading: false,
-  panelOpen: false
+  panelOpen: false,
+  optionsOpen: false,
+  devToolsOpen: false
 };
 
 const getters = {
@@ -15,6 +17,12 @@ const getters = {
   },
   isPanelOpen(state) {
     return state.panelOpen;
+  },
+  areOptionsOpen(state) {
+    return state.optionsOpen;
+  },
+  devToolsOpen(state) {
+    return state.devToolsOpen;
   }
 };
 
@@ -27,6 +35,12 @@ const mutations = {
   },
   setPanelState(state, bool) {
     state.panelOpen = bool;
+  },
+  setOptionsState(state, bool) {
+    state.optionsOpen = bool;
+  },
+  setDevToolsState(state, bool) {
+    state.devToolsOpen = bool;
   }
 };
 
@@ -51,11 +65,14 @@ const actions = {
   stopLoading(context) {
     context.commit('setLoadState', false);
   },
-  openPanel(context) {
-    context.commit('setPanelState', true);
+  togglePanel(context) {
+    context.commit('setPanelState', !context.state.panelOpen);
   },
-  closePanel(context) {
-    context.commit('setPanelState', false);
+  toggleOptions(context) {
+    context.commit('setOptionsState', !context.state.optionsOpen);
+  },
+  toggleDevTools(context) {
+    context.commit('setDevToolsState', !context.state.devToolsOpen);
   },
 };
 

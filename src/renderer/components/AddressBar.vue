@@ -20,14 +20,14 @@
           <!-- icon="language" -->
       </b-input>
       <p class="control">
-        <button class="button is-white" @click="openPanel">
+        <button class="button is-white" @click="toggleOptions">
           <i class="material-icons">
-              more_vert
+              menu
           </i>
         </button>
       </p>
       <p class="control">
-        <button class="button is-white" @click="openPanel">
+        <button class="button is-white" @click="togglePanel">
           <i class="material-icons">
               accessibility
           </i>
@@ -57,7 +57,7 @@
       }
     },
     methods: {
-      ...mapActions(['visit', 'openPanel']),
+      ...mapActions(['visit', 'togglePanel', 'toggleOptions']),
       gotoUrl(url) {
         console.log('visiting', url);
         this.visit(url);

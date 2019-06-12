@@ -15,7 +15,7 @@
       </div>
       <div class="level-right">
         <p class="level-item">
-          <button class="button is-white has-text-right" @click="closePanel">
+          <button class="button is-white has-text-right" @click="togglePanel">
             <i class="material-icons">
               close
             </i>
@@ -69,7 +69,7 @@
       ...mapGetters(['isPanelOpen', 'list', 'active'])
     },
     methods: {
-      ...mapActions(['closePanel', 'toggle', 'clear']),
+      ...mapActions(['togglePanel', 'toggle', 'clear']),
       contains(id) {
         return this.active.indexOf(id) > -1;
       },

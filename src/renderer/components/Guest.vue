@@ -7,7 +7,8 @@
 <script>
   import { mapGetters } from 'vuex';
   import EventBus from '@/EventBus';
-  const contextMenu = require('electron-context-menu');
+  import _ from 'lodash';
+  const path = require('path');
 
   export default {
     name: 'Guest',
@@ -15,12 +16,12 @@
       return {
         isBlurry: false,
         filter: '',
-        preload: 'file:///Users/bwise/code/empath/src/renderer/preload.js',
+        preload: 'file://' + path.resolve(__dirname, '../preload.js'),
         defaultSrc: 'http://duckduckgo.com'
       };
     },
     computed: {
-      ...mapGetters(['url', 'active']),
+      ...mapGetters(['url', 'active', 'devToolsOpen']),
       styleObject() {
         return {
           filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
@@ -36,6 +37,9 @@
       },
       active(active) {
         this.applyFilters(active);
+      },
+      devToolsOpen(bool) {
+        this.setDevTools(bool);
       },
     },
     methods: {
@@ -67,6 +71,13 @@
         if (this.$refs.guest) {
           this.$refs.guest.send('set-volume', param);
         }
+      },
+      setDevTools(bool) {
+        if (bool) {
+          this.$refs.guest.openDevTools();
+        } else {
+          this.$refs.guest.closeDevTools();
+        }
       }
     },
     mounted() {
@@ -90,13 +101,10 @@
 
       });
 
-      contextMenu({
-        window: this.$refs.guest,
-        showInspectElement: true
-      });
-
       EventBus.$on('back', this.back);
       EventBus.$on('setVolume', this.setVolume);
+
+      this.setDevTools(this.devToolsOpen);
     }
   };
 </script>
