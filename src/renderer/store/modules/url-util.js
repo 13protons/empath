@@ -15,7 +15,7 @@ const tldjs = require('tldjs');
 const urlParser = (function getParserForEnv() {
   try {
     if (window) {
-      return function (text) {
+      return function createUrl(text) {
         return new window.URL(text);
       };
     }
@@ -222,41 +222,41 @@ const urlUtil = {
    * @param {String} input The input URL.
    * @returns {String} The host name.
    */
-  getHostname(input, excludePort) {
-    if (excludePort === void 0) {
-      excludePort = false;
-    }
-    try {
-      if (excludePort) {
-        return new window.URL(input).hostname;
-      }
-      return new window.URL(input).host;
-    } catch (e) {
-      return null;
-    }
-  },
+  // getHostname(input, excludePort) {
+  //   if (excludePort === void 0) {
+  //     excludePort = false;
+  //   }
+  //   try {
+  //     if (excludePort) {
+  //       return new window.URL(input).hostname;
+  //     }
+  //     return new window.URL(input).host;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // },
   /**
    * Gets PDF url from a potential PDFJS URL
    * @param {string} url
    * @return {string}
    */
-  getUrlIfPDF(url) {
-    const PDF_VIEWER_WITH_PDFJS = '/pdfjs/web/viewer.html';
-    const PDF_VIEWER_FOR_CHROME = 'chrome://pdf-viewer/index.html?src=';
-    if (url) {
-      if (url.includes(PDF_VIEWER_WITH_PDFJS)) {
-        return url.replace(
-          /^file:.+\/pdfjs\/web\/viewer.html\?file=(\w+:\/\/.+)/,
-          '$1'
-        );
-      }
-      if (url.includes(PDF_VIEWER_FOR_CHROME)) {
-        return url.replace(/^chrome:\/\/pdf-viewer\/index\.html\?src=/, '');
-      }
-      return url;
-    }
-    return '';
-  },
+  // getUrlIfPDF(url) {
+  //   const PDF_VIEWER_WITH_PDFJS = '/pdfjs/web/viewer.html';
+  //   const PDF_VIEWER_FOR_CHROME = 'chrome://pdf-viewer/index.html?src=';
+  //   if (url) {
+  //     if (url.includes(PDF_VIEWER_WITH_PDFJS)) {
+  //       return url.replace(
+  //         /^file:.+\/pdfjs\/web\/viewer.html\?file=(\w+:\/\/.+)/,
+  //         '$1'
+  //       );
+  //     }
+  //     if (url.includes(PDF_VIEWER_FOR_CHROME)) {
+  //       return url.replace(/^chrome:\/\/pdf-viewer\/index\.html\?src=/, '');
+  //     }
+  //     return url;
+  //   }
+  //   return '';
+  // },
   /**
    * Shows the original url from a error page
    * @param {string} url
@@ -280,24 +280,24 @@ const urlUtil = {
    * @param {string} url
    * @return {object}
    */
-  getUrlIfAbout(url) {
-    if (url.startsWith(`${constants_1.default.lulumiPagesCustomProtocol}://`)) {
-      const guestUrl = require('url').parse(url);
-      if (guestUrl.hash) {
-        const guestHash = guestUrl.hash.substr(2);
-        const item =
-          `${guestUrl.host}:${guestHash === '' ? 'about' : guestHash}`;
-        return {
-          title: item,
-          url: item
-        };
-      }
-    }
-    return {
-      url,
-      title: ''
-    };
-  },
+  // getUrlIfAbout(url) {
+  //   if (url.startsWith(`${constants_1.default.lulumiPagesCustomProtocol}://`)) {
+  //     const guestUrl = require('url').parse(url);
+  //     if (guestUrl.hash) {
+  //       const guestHash = guestUrl.hash.substr(2);
+  //       const item =
+  //         `${guestUrl.host}:${guestHash === '' ? 'about' : guestHash}`;
+  //       return {
+  //         title: item,
+  //         url: item
+  //       };
+  //     }
+  //   }
+  //   return {
+  //     url,
+  //     title: ''
+  //   };
+  // },
   /**
    * Gets the default favicon URL for a URL.
    * @param {string} url The URL to find a favicon for
@@ -315,22 +315,22 @@ const urlUtil = {
    * @param {string} url The URL to find a filename of the image
    * @return {Promise}
    */
-  getFilenameFromUrl(url) {
-    return new Promise(((resolve, reject) => {
-      const img = new window.Image();
-      img.onerror = function () {
-        resolve('');
-        reject();
-      };
-      img.onload = function () {
-        const urllib = require('url');
-        const path = require('path');
-        const parsed = urllib.parse(url);
-        resolve(path.basename(parsed.pathname));
-      };
-      img.src = url;
-    }));
-  }
+  // getFilenameFromUrl(url) {
+  //   return new Promise(((resolve, reject) => {
+  //     const img = new window.Image();
+  //     img.onerror = function () {
+  //       resolve('');
+  //       reject();
+  //     };
+  //     img.onload = function () {
+  //       const urllib = require('url');
+  //       const path = require('path');
+  //       const parsed = urllib.parse(url);
+  //       resolve(path.basename(parsed.pathname));
+  //     };
+  //     img.src = url;
+  //   }));
+  // }
 };
 
 export default urlUtil;
