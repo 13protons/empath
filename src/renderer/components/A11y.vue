@@ -29,8 +29,7 @@
       <p class="panel-tabs">
         <a :class="{'is-active': tab === 0 }" @click="tab = 0">Sight</a>
         <a :class="{'is-active': tab === 1 }" @click="tab = 1">Sound</a>
-        <a :class="{'is-active': tab === 2 }" @click="tab = 2">Cognition</a>
-        <a :class="{'is-active': tab === 3 }" @click="tab = 3">Motor</a>
+        <a :class="{'is-active': tab === 3 }" @click="tab = 3">Touch</a>
         <!-- <a :class="{'is-active': tab === 3 }" @click="tab = 3">Read/Write</a> -->
       </p>
 
@@ -98,7 +97,7 @@
         <a class="panel-block" :class="{'is-active': parkinsonsEnabled === true }" @click='simParkinsons(!parkinsonsEnabled)'>
           <span class="panel-icon">
             <i class="material-icons">
-                volume_up
+                touch_app
             </i>
           </span>
           Parkinson's
