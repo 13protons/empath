@@ -6,9 +6,7 @@ const files = require.context('@/assets/filters', false, /\.svg$/);
 const filters = files.keys().map((key) => {
   const oParser = new DOMParser();
 
-  console.log('found filter', key);
   const oDOM = oParser.parseFromString(files(key), 'application/xml');
-  console.log('desc', oDOM.querySelector('desc').textContent);
 
   const f = Array.from(oDOM.querySelectorAll('filter')).map(item => ({
     id: item.id,
@@ -28,7 +26,6 @@ const filters = files.keys().map((key) => {
   };
 });
 
-console.log('filters', filters);
 
 const state = {
   list: filters,
@@ -38,7 +35,6 @@ const state = {
 
 const getters = {
   list(state) {
-    console.log('retrieve state', state.list);
     return filters;
   },
   active(state) {

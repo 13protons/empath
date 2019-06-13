@@ -1,7 +1,7 @@
 import { createValidUrlFromFragment } from './url-util';
-
+const homeUrl = 'https://github.com/13protons/empath#empath';
 const state = {
-  url: 'http://github.com',
+  url: homeUrl,
   loading: false,
   panelOpen: false,
   optionsOpen: false,
@@ -74,6 +74,9 @@ const actions = {
   toggleDevTools(context) {
     context.commit('setDevToolsState', !context.state.devToolsOpen);
   },
+  goHome(context) {
+    context.commit('visit', homeUrl);
+  }
 };
 
 export default {

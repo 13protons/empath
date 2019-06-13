@@ -6,10 +6,8 @@ const files = fs.readdirSync(path.resolve(__static, './overlays'));
 const overlays = files.filter(key => key.indexOf('.svg') > 0).map((key) => {
   const oParser = new DOMParser();
 
-  console.log('found overlay', key);
   const file = fs.readFileSync(path.resolve(__static, './overlays', key));
   const oDOM = oParser.parseFromString(file, 'application/xml');
-  console.log('desc', oDOM.querySelector('desc').textContent);
 
   return {
     title: oDOM.querySelector('title').textContent,
@@ -22,8 +20,6 @@ const overlays = files.filter(key => key.indexOf('.svg') > 0).map((key) => {
   };
 });
 
-console.log('overlays', overlays);
-
 const state = {
   overlays,
   activeOverlay: {},
@@ -31,7 +27,6 @@ const state = {
 
 const getters = {
   overlays(state) {
-    console.log('retrieve state', state.overlays);
     return overlays;
   },
   activeOverlay(state) {
