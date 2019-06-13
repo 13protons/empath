@@ -34,5 +34,11 @@ module.exports = {
     'indent': 0,
     'no-tabs': 0,
     'no-alert': 0,
+    'no-inner-declarations': 0,
+    'no-mixed-operators': 0,
+    'quotes': 0,
+    'padded-blocks': 0,
+    'prefer-const': 0,
+    
   }
 }

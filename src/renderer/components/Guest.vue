@@ -1,5 +1,6 @@
 <template>
   <div class="guest">
+    <img src="/static/assets/arrow_cursor.png" id='cursor_img' v-if="parkinsonsActive" :style="cursorStyle"/>
     <webview id="guest" autosize ref="guest" :preload="preload" :src="url"></webview>
   </div>
 </template>
@@ -17,6 +18,10 @@
         isBlurry: false,
         filter: '',
         preload: 'file://' + path.resolve(__dirname, '../preload.js'),
+        defaultSrc: 'http://localhost:5000/static/',
+        cursorX: 0,
+        cursorY: 0,
+        parkinsonsActive: false,
         webviewIsInteractive: false
       };
     },
@@ -24,7 +29,16 @@
       ...mapGetters(['url', 'active', 'devToolsOpen']),
       styleObject() {
         return {
-          filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
+          filter: this.active.reduce((acc, item) =
+          
+          
+         (`${acc} url(#${item}) `), '')
+        };
+      },
+      cursorStyle() {
+        return {
+          top: this.cursorY + "px",
+          left: this.cursorX + "px",
         };
       }
     },
@@ -73,13 +87,40 @@
           this.$refs.guest.send('set-volume', param);
         }
       },
+      simParkinsons(param) {
+        if (param) {
+          this.parkinsonsActive = true;
+          this.$refs.guest.executeJavaScript('document.body.style.cursor = "none";')
+
+          this.startTrackingCursor();
+        } else {
+          this.parkinsonsActive = false;
+          this.stopTrackingCursor();
+        }
+      },
       setDevTools(bool) {
         if (bool) {
-          // this.$refs.guest.openDevTools();
+          this.$refs.guest.openDevTools();
         } else {
-          // this.$refs.guest.closeDevTools();
+          this.$refs.guest.closeDevTools();
         }
-      }
+      },
+      startTrackingCursor() {
+        document.addEventListener("mousemove", this.handleCursorMove);
+      },
+      stopTrackingCursor() {
+        document.removeEventListener("mousemove", this.handleCursorMove);
+      },
+      handleCursorMove(e) {
+        let xshift = this.getRandomInt(-10, 10);
+        let yshift = this.getRandomInt(-10, 10);
+
+        this.cursorX = e.clientX + xshift;
+        this.cursorY = e.clientY + yshift;
+      },
+      getRandomInt(from, to) {
+        return Math.floor(Math.random() * (to - from + 1) + from);
+      },
     },
     mounted() {
       this.$refs.guest.addEventListener('will-navigate', (data) => {
@@ -104,6 +145,7 @@
 
       EventBus.$on('back', this.back);
       EventBus.$on('setVolume', this.setVolume);
+      EventBus.$on('simParkinsons', this.simParkinsons);
     }
   };
 </script>
@@ -126,5 +168,14 @@
 #guest {
   height: 100%;
   width: 100%;
+}
+
+#cursor_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 102;
+  height: 16px;
+  width: 16px;
 }
 </style>

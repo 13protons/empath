@@ -30,6 +30,7 @@
         <a :class="{'is-active': tab === 0 }" @click="tab = 0">Sight</a>
         <a :class="{'is-active': tab === 1 }" @click="tab = 1">Sound</a>
         <a :class="{'is-active': tab === 2 }" @click="tab = 2">Cognition</a>
+        <a :class="{'is-active': tab === 3 }" @click="tab = 3">Motor</a>
         <!-- <a :class="{'is-active': tab === 3 }" @click="tab = 3">Read/Write</a> -->
       </p>
 
@@ -93,54 +94,19 @@
         </a>
       </div>
 
-      
+      <div v-if="tab === 3">
+        <a class="panel-block" :class="{'is-active': parkinsonsEnabled === true }" @click='simParkinsons(!parkinsonsEnabled)'>
+          <span class="panel-icon">
+            <i class="material-icons">
+                volume_up
+            </i>
+          </span>
+          Parkinson's
+        </a>
+      </div>
+
+
     </nav>
-
-    <!-- <fuzzy /> -->
-    <!-- <div id="controls">
-      <h3 class="title">Filters</h3>
-      <div v-for="item in list" :key="item.id" class="action">
-        <h3>{{item.title}}</h3>
-        <small class="desc">{{item.description}}</small>
-
-        <button v-for="control in item.controls"
-                :key="control.id"
-                @click="toggle(control.id)"
-                class="button"
-                :class="{'is-primary': contains(control.id)}">
-          Toggle: &nbsp; {{control.label}}
-        </button>
-        <hr/>
-      </div>
-
-      <h3 class="title">Overlays</h3>
-      <div v-for="item in overlays" :key="item.id" class="action">
-        <h3>{{item.title}}</h3>
-        <small class="desc">{{item.description}}</small>
-
-        <button @click="toggleOverlay(item.id)"
-                class="button"
-                :class="{'is-primary': overlayOn(item.id)}">
-          Toggle: &nbsp; {{item.title}}
-        </button>
-        <hr/>
-      </div>
-
-      <div class="action">
-        <h3>Audio Alteration</h3>
-        <small class="desc">Change the page volume</small>
-
-        <button class='button is-success' @click='setVolume(1)'>No Hearing Loss</button>
-        <button class='button is-warning' @click='setVolume(.2)'>Mild Hearing Loss</button>
-        <button class='button is-warning' @click='setVolume(.05)'>Moderate Hearing Loss</button>
-        <button class='button is-danger' @click='setVolume(.01)'>Severe Hearing Loss</button>
-
-        <hr/>
-      </div>
-    </div> -->
-    <!-- <div id="reset">
-      <button class="button is-warning is-fullwidth" @click="clear">Clear All</button>
-    </div> -->
   </div>
 </template>
 
@@ -157,7 +123,8 @@
         filters: {},
         overlaysModel: {},
         tab: 0,
-        volume: -1
+        volume: -1,
+        parkinsonsEnabled: false,
       };
     },
     watch: {
@@ -208,6 +175,10 @@
       },
       switcher(id) {
         console.log('trying to switch', id);
+      },
+      simParkinsons(isEnabled) {
+        this.parkinsonsEnabled = isEnabled;
+        EventBus.$emit('simParkinsons', isEnabled);
       },
       clearAll() {
         this.clear();
