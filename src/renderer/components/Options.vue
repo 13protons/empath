@@ -1,30 +1,45 @@
 <template>
   <div id="Options">
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <p class="level-item">
-        <i class="material-icons">
-              menu
-          </i>
-        </p>
-      </div>
-      <div class="level-item has-text-centered">
-        <p class="subtitle">
-          Options
-        </p>
-      </div>
-      <div class="level-right">
-        <p class="level-item">
-          <button class="button is-white has-text-right" @click="toggleOptions">
-            <i class="material-icons">
-              close
+    <nav class="panel">
+
+      <div class="panel-heading level">
+        <div class="level-left">
+          <p class="level-item">
+          <i class="material-icons has-text-primary	">
+                menu
             </i>
-          </button>
-        </p>
+          </p>
+        </div>
+        <div class="level-item has-text-centered">
+          <p class="subtitle">
+            Settings
+          </p>
+        </div>
+        <div class="level-right">
+          <p class="level-item">
+            <button class="button is-white has-text-right" @click="toggleOptions">
+              <i class="material-icons">
+                close
+              </i>
+            </button>
+          </p>
+        </div>
       </div>
+
+      <a class="panel-block" @click="toggleDevTools" :class="{'is-active': devToolsOpen }">
+          <span class="panel-icon">
+            <i class="material-icons" v-if="devToolsOpen">
+                remove_circle
+            </i>
+            <i class="material-icons" v-if="!devToolsOpen">
+                add_circle
+            </i>
+          </span>
+          Dev Tools
+      </a>
     </nav>
 
-    <!-- <fuzzy /> -->
+    <!-- <fuzzy />
     <div id="controls">
       <div class="action">
         <h3>Dev Tools</h3>
@@ -37,7 +52,7 @@
         </button>
         <hr/>
       </div>
-    </div>
+    </div> -->
  
   </div>
 </template>
@@ -61,29 +76,16 @@
 
 <style lang="scss" >
   #Options {
-    display: flex;
-    padding: 0 1em;
     height: 100vh;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  nav {
-    border-bottom: 2px solid #eee;
-    max-height: 2.6em;
+    background-color: rgba(255, 255, 255, .85);
+    font-weight: bold;
   }
 
-  small.desc {
-    display: block;
-    color: #aaa;
-    font-size: .8em;
-    margin: 1em 0;
+  .panel {
+    height: 100%;
   }
-  #reset, #controls, nav {
-    flex: 1;
-    flex-direction: row;
-    align-items: stretch;
-  }
-  #controls {
-    overflow: scroll;
+  .panel-icon {
+    width: 2em;
+    height: 1.5em;
   }
 </style>

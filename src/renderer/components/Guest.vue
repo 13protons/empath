@@ -1,5 +1,5 @@
 <template>
-  <div class="guest" :style="styleObject">
+  <div class="guest">
     <webview id="guest" ref="guest" :preload="preload" :src="defaultSrc"></webview>
   </div>
 </template>
@@ -98,13 +98,11 @@
       });
 
       this.$refs.guest.addEventListener('dom-ready', () => {
-
+        this.setDevTools(this.devToolsOpen);
       });
 
       EventBus.$on('back', this.back);
       EventBus.$on('setVolume', this.setVolume);
-
-      this.setDevTools(this.devToolsOpen);
     }
   };
 </script>
