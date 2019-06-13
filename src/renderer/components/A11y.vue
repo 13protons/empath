@@ -34,26 +34,19 @@
       </p>
 
       <a v-for="item in list" :key="item.id" class="panel-block">
-        <span class="panel-icon">
-          <i class="material-icons">
-                filter
-          </i>
-        </span>
-
-        {{item.title}}
-        <!-- <small class="desc">{{item.description}}</small> -->
-        <b-switch v-for="control in item.controls"
+          <b-switch v-for="control in item.controls"
                 :key="control.id"
                 v-model="filters[control.id]"
-                >{{control.label}} {{filters[control.id]}}</b-switch>
-        <!-- <button v-for="control in item.controls"
-                :key="control.id"
-                @click="toggle(control.id)"
-                class="button"
-                :class="{'is-primary': contains(control.id)}">
-          Toggle: &nbsp; {{control.label}}
-        </button> -->
-        
+                ></b-switch>
+        <!-- <small class="desc">{{item.description}}</small> -->
+                {{item.title}}
+      </a>
+
+      <a v-for="item in overlays" :key="item.id" class="panel-block">
+          <b-switch v-model="overlaysModel[item.id]"
+                ></b-switch>
+        <!-- <small class="desc">{{item.description}}</small> -->
+                {{item.title}}
       </a>
 
       <div class="panel-block">
@@ -119,7 +112,8 @@
     name: 'A11y',
     data() {
       return {
-        filters: {}
+        filters: {},
+        overlaysModel: {}
       };
     },
     watch: {
@@ -127,9 +121,26 @@
         handler(newVal) {
           // sync local state back to store. ugh inputs.
           _.forEach(newVal, (val, key) => {
-            if (val !== this.contains(val)) {
-              this.toggle(key);
-            }
+            this.$nextTick(() => {
+              if (val !== this.contains(key)) {
+                this.toggle(key);
+              }
+            });
+          });
+        },
+        deep: true
+      },
+      overlaysModel: {
+        handler(newVal) {
+          // sync local state back to store. ugh inputs.
+          console.log('updated overlay', newVal);
+          _.forEach(newVal, (val, key) => {
+            this.$nextTick(() => {
+              console.log('compare', key, val, this.overlayOn(val));
+              if (val !== this.overlayOn(key)) {
+                this.toggleOverlay(key);
+              }
+            });
           });
         },
         deep: true
@@ -144,6 +155,7 @@
         return this.active.indexOf(id) > -1;
       },
       overlayOn(id) {
+        console.log('anything on ', id, this.activeOverlay.id === id);
         return this.activeOverlay.id === id;
       },
       setVolume(newVolume) {
@@ -159,6 +171,11 @@
     mounted() {
       this.list.forEach((item) => {
         this.$set(this, 'filters[item.id]', this.contains(item.id) || false);
+      });
+
+      this.overlays.forEach((item) => {
+        console.log('overlays', item);
+        this.$set(this, 'overlaysModel[item.id]', this.overlayOn(item.id) || false);
       });
     }
   };
