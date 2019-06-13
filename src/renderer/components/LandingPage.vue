@@ -9,10 +9,10 @@
       <guest />
     </div>
 
-    <div class="panel" v-if="areOptionsOpen">
+    <div class="side-panel" v-if="areOptionsOpen">
       <guest-options />
     </div>
-    <div class="panel" v-if="isPanelOpen">
+    <div class="side-panel" v-if="isPanelOpen">
       <access />
     </div>
     <div id="filters">
@@ -63,14 +63,12 @@
     height: 0;
     overflow: hidden;
   }
-  .panel {
+  .side-panel {
     position: absolute;
     right: 0px;
     width: 80%;
     max-width: 480px;
     height: 100vh;
-    background-color: rgba(255, 255, 255, .85);
-    border-left: 1px solid gray;
   }
 
   #wrapper {

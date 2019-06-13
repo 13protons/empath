@@ -1,6 +1,6 @@
 <template>
-  <div id="overlay">
-    <img :src="activeOverlay.url">
+  <div id="overlay" :style="bgStyle">
+    <!-- <img :src="activeOverlay.url"> -->
   </div>
 </template>
 
@@ -9,12 +9,26 @@
 
   export default {
     computed: {
-      ...mapGetters(['activeOverlay'])
+      ...mapGetters(['activeOverlay']),
+      bgStyle() {
+        return {
+          backgroundImage: `url('${this.activeOverlay.url}')`
+        };
+      }
     },
     name: 'Overlay'
   };
 </script>
 
-<style>
-
+<style lang="scss">
+  #overlay {
+    position: fixed;
+    width: 100vh;
+    height: calc(100vh - 3em);
+    pointer-events: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+  }
 </style>

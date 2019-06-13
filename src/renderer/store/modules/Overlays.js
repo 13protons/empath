@@ -1,12 +1,14 @@
 const path = require('path');
 const cuid = require('cuid');
-const files = require.context('@/assets/overlays', false, /\.svg$/);
+const fs = require('fs');
+const files = fs.readdirSync(path.resolve(__static, './overlays'));
 
-const overlays = files.keys().map((key) => {
+const overlays = files.filter(key => key.indexOf('.svg') > 0).map((key) => {
   const oParser = new DOMParser();
 
   console.log('found overlay', key);
-  const oDOM = oParser.parseFromString(files(key), 'application/xml');
+  const file = fs.readFileSync(path.resolve(__static, './overlays', key));
+  const oDOM = oParser.parseFromString(file, 'application/xml');
   console.log('desc', oDOM.querySelector('desc').textContent);
 
   return {
