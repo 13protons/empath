@@ -31,6 +31,8 @@ module.exports = {
     'dot-notation': 0,
     'no-console': 0,
     'arrow-body-style': 1,
-    
+    'indent': 0,
+    'no-tabs': 0,
+    'no-alert': 0,
   }
 }

@@ -19,9 +19,9 @@ const filters = files.keys().map((key) => {
   return {
     title: oDOM.querySelector('title').textContent,
     description: oDOM.querySelector('desc').textContent,
-    author: oDOM.querySelector('author').textContent,
-    version: oDOM.querySelector('version').textContent,
-    lastUpdated: oDOM.querySelector('updated').textContent,
+    author: '', // oDOM.querySelector('author').textContent,
+    version: '', // oDOM.querySelector('version').textContent,
+    lastUpdated: '', // oDOM.querySelector('updated').textContent,
     raw: files(key),
     controls: f,
     id: cuid()

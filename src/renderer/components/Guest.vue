@@ -17,7 +17,7 @@
         isBlurry: false,
         filter: '',
         preload: 'file://' + path.resolve(__dirname, '../preload.js'),
-        defaultSrc: 'http://duckduckgo.com'
+        defaultSrc: 'http://localhost:5000/static/'
       };
     },
     computed: {
@@ -74,9 +74,9 @@
       },
       setDevTools(bool) {
         if (bool) {
-          this.$refs.guest.openDevTools();
+          // this.$refs.guest.openDevTools();
         } else {
-          this.$refs.guest.closeDevTools();
+          // this.$refs.guest.closeDevTools();
         }
       }
     },

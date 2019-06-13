@@ -1,0 +1,30 @@
+<svg>
+  <title>Tritanopia</title>
+  <desc></desc>
+
+  <defs>
+    <filter id="tritanopia_filter"  x="0" y="0" width="100%" height="100%">
+      <desc>Tritanopia Filter</desc>
+      <metadata>
+        <label>Tritanopia</label>
+      </metadata>
+
+      <feColorMatrix
+              in="SourceGraphic"
+              type="matrix"
+              values="0.95, 0.05,  0, 0, 0 0,  0.433, 0.567, 0, 0 0,  0.475, 0.525, 0, 0 0,  0, 0, 1, 0"
+            />
+
+    </filter>
+
+    <!-- <animate
+        xlink:href="#astigmatism_offset_one"
+        id="anim-offset"
+        attributeName="dx"
+        from="0"
+        to="5"
+        dur="5s"
+        fill="freeze"
+      /> -->
+  </defs>
+</svg>
