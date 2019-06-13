@@ -4,14 +4,15 @@
       <top-bar />
     </div>
     
-    <div class="main">
+    <div class="main" :style="styleObject">
+      <overlay />
       <guest />
     </div>
 
-    <div class="panel" v-if="areOptionsOpen">
+    <div class="side-panel" v-if="areOptionsOpen">
       <guest-options />
     </div>
-    <div class="panel" v-if="isPanelOpen">
+    <div class="side-panel" v-if="isPanelOpen">
       <access />
     </div>
     <div id="filters">
@@ -27,6 +28,7 @@
   import Access from './A11y.vue';
   import Guest from './Guest.vue';
   import GuestOptions from './Options.vue';
+  import Overlay from './Overlay.vue';
 
   export default {
     name: 'landing-page',
@@ -34,13 +36,19 @@
       return {};
     },
     computed: {
-      ...mapGetters(['isPanelOpen', 'areOptionsOpen', 'list'])
+      ...mapGetters(['isPanelOpen', 'active', 'areOptionsOpen', 'list']),
+      styleObject() {
+        return {
+          filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
+        };
+      }
     },
     components: {
       TopBar,
       Guest,
       Access,
-      GuestOptions
+      GuestOptions,
+      Overlay
     }
   };
 </script>
@@ -60,14 +68,12 @@
     height: 0;
     overflow: hidden;
   }
-  .panel {
+  .side-panel {
     position: absolute;
     right: 0px;
     width: 80%;
-    max-width: 480px;
+    max-width: 360px;
     height: 100vh;
-    background-color: rgba(255, 255, 255, .85);
-    border-left: 1px solid gray;
   }
 
   #wrapper {
