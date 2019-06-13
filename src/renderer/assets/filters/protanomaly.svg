@@ -1,0 +1,30 @@
+<svg>
+  <title>Protanomaly</title>
+  <desc></desc>
+
+  <defs>
+    <filter id="protanomaly_filter"  x="0" y="0" width="100%" height="100%">
+      <desc>Protanomaly Filter</desc>
+      <metadata>
+        <label>Protanomaly</label>
+      </metadata>
+
+      <feColorMatrix
+              in="SourceGraphic"
+              type="matrix"
+              values="0.817, 0.183, 0, 0, 0 0.333, 0.667, 0, 0, 0 0, 0.125, 0.875, 0, 0 0, 0, 0, 1, 0"
+            />
+
+    </filter>
+
+    <!-- <animate
+        xlink:href="#astigmatism_offset_one"
+        id="anim-offset"
+        attributeName="dx"
+        from="0"
+        to="5"
+        dur="5s"
+        fill="freeze"
+      /> -->
+  </defs>
+</svg>
