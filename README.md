@@ -2,19 +2,20 @@
 
 ## See the web through the eyes of others.
 
-Empath is a web browser that uses various technologies to simulate the mismatch between the diversity of human capabilities and the internet.
+Empathy Browser simulates how people with different disabilities experience the web. It builds empathy and promotes inclusion. This web browser uses various technologies to simulate the mismatch between the diversity of human capabilities and the internet.
 
-Empath allows web developers to experience their project the way someone else may experience it, by simulating common disabilities.
+Websites and digital materials that are not designed with accessibility in-mind exclude a significant population of potential users. Empathy Browser allows professionals, such as web developers and designers, to experience their projects in ways that relate them to users with a different array of abilities.
 
-Our goal with Empath is to build empathy and promote inclusion. We want to change the way technology professionals think about inclusive design.
+By experiencing a simulation of common disabilities, Empathy Browser will help you promote true diversity in a digital world. It will change the way technology professionals think about inclusive design, thus transforming technology and positively impacting the world.
 
 ---
 
-The images below are used to diagnose common forms of color blindness. Use the tools in Empath to view these images as they appear to other people. Can you identify ways in which these images lose their meaning?
+Note: The images below are used to diagnose common forms of color blindness. Use the tools in Empathy Browser to view these images as they appear to other people. Can you identify ways in which these images lose their meaning?
 
 ![Images for experiencing color blindness](./static/assets/ishihara_3.jpg)
 ![Images for experiencing color blindness](./static/assets/ishihara_5.jpg)
 ![A chart using visual language that relies on color and a chart that does not rely exclusively on color](./static/assets/colorblindchart.png)
+![A traffic light](./static/assets/trafficlight.jpeg)
 ![A video game that relies on color](./static/assets/matchinggame.jpg)
 
 See [the website](https://13protons.github.io/empath/) for more info and visual examples.
