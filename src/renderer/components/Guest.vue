@@ -1,12 +1,12 @@
 <template>
   <div class="guest">
     <img src="/static/assets/arrow_cursor.png" id='cursor_img' v-if="parkinsonsActive" :style="cursorStyle"/>
-    <webview id="guest" ref="guest" :preload="preload" :src="defaultSrc"></webview>
+    <webview id="guest" autosize ref="guest" :preload="preload" :src="url"></webview>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
   import EventBus from '@/EventBus';
   import _ from 'lodash';
   const path = require('path');
@@ -22,13 +22,17 @@
         cursorX: 0,
         cursorY: 0,
         parkinsonsActive: false,
+        webviewIsInteractive: false
       };
     },
     computed: {
       ...mapGetters(['url', 'active', 'devToolsOpen']),
       styleObject() {
         return {
-          filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
+          filter: this.active.reduce((acc, item) =
+          
+          
+         (`${acc} url(#${item}) `), '')
         };
       },
       cursorStyle() {
@@ -50,9 +54,10 @@
       },
       devToolsOpen(bool) {
         this.setDevTools(bool);
-      },
+      }
     },
     methods: {
+      ...mapActions(['goHome']),
       applyFilters(filters) {
         this.setFilterId(filters[0]);
       },
@@ -118,7 +123,6 @@
       },
     },
     mounted() {
-      console.log(this.$refs.guest.loadURL);
       this.$refs.guest.addEventListener('will-navigate', (data) => {
         this.$store.dispatch('visit', data.url);
       });
@@ -136,6 +140,7 @@
 
       this.$refs.guest.addEventListener('dom-ready', () => {
         this.setDevTools(this.devToolsOpen);
+        this.webviewIsInteractive = true;
       });
 
       EventBus.$on('back', this.back);
