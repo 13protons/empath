@@ -5,6 +5,7 @@
     </div>
     
     <div class="main">
+      <overlay />
       <guest />
     </div>
 
@@ -27,6 +28,7 @@
   import Access from './A11y.vue';
   import Guest from './Guest.vue';
   import GuestOptions from './Options.vue';
+  import Overlay from './Overlay.vue';
 
   export default {
     name: 'landing-page',
@@ -40,7 +42,8 @@
       TopBar,
       Guest,
       Access,
-      GuestOptions
+      GuestOptions,
+      Overlay
     }
   };
 </script>

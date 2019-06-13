@@ -26,6 +26,7 @@
 
     <!-- <fuzzy /> -->
     <div id="controls">
+      <h3 class="title">Filters</h3>
       <div v-for="item in list" :key="item.id" class="action">
         <h3>{{item.title}} - {{item.id}}</h3>
         <small class="desc">{{item.description}}</small>
@@ -38,6 +39,21 @@
           Toggle: &nbsp; {{control.label}}
         </button>
         <hr/>
+      </div>
+
+      <h3 class="title">Overlays</h3>
+      <div v-for="item in overlays" :key="item.id" class="action">
+        <h3>{{item.title}} - {{item.id}}</h3>
+        <small class="desc">{{item.description}}</small>
+
+        <button @click="toggleOverlay(item.id)"
+                class="button"
+                :class="{'is-primary': overlayOn(item.id)}">
+          Toggle: &nbsp; {{item.title}}
+        </button>
+        <hr/>
+
+        {{ activeOverlay }}
       </div>
 
       <div class="action">
@@ -66,12 +82,15 @@
   export default {
     name: 'A11y',
     computed: {
-      ...mapGetters(['isPanelOpen', 'list', 'active'])
+      ...mapGetters(['isPanelOpen', 'list', 'active', 'overlays', 'activeOverlay'])
     },
     methods: {
-      ...mapActions(['togglePanel', 'toggle', 'clear']),
+      ...mapActions(['togglePanel', 'toggle', 'clear', 'toggleOverlay']),
       contains(id) {
         return this.active.indexOf(id) > -1;
+      },
+      overlayOn(id) {
+        return this.activeOverlay.id === id;
       },
       setVolume(newVolume) {
         EventBus.$emit('setVolume', newVolume);

@@ -98,13 +98,11 @@
       });
 
       this.$refs.guest.addEventListener('dom-ready', () => {
-
+        this.setDevTools(this.devToolsOpen);
       });
 
       EventBus.$on('back', this.back);
       EventBus.$on('setVolume', this.setVolume);
-
-      this.setDevTools(this.devToolsOpen);
     }
   };
 </script>
