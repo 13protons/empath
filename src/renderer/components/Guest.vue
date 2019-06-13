@@ -29,10 +29,7 @@
       ...mapGetters(['url', 'active', 'devToolsOpen']),
       styleObject() {
         return {
-          filter: this.active.reduce((acc, item) =
-          
-          
-         (`${acc} url(#${item}) `), '')
+          filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
         };
       },
       cursorStyle() {
