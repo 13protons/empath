@@ -70,6 +70,9 @@ const actions = {
     } else {
       context.commit('setOverlay', id);
     }
+  },
+  removeOverlays(context) {
+    context.commit('setOverlay', -1000);
   }
 };
 

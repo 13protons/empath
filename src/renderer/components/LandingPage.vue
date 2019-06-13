@@ -67,7 +67,7 @@
     position: absolute;
     right: 0px;
     width: 80%;
-    max-width: 480px;
+    max-width: 360px;
     height: 100vh;
   }
 

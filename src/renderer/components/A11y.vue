@@ -27,31 +27,73 @@
       </div>
 
       <p class="panel-tabs">
-        <a class="is-active">Sight</a>
-        <a>Hearing</a>
-        <a>Cognition</a>
-        <a>Reading &amp; Writing</a>
+        <a :class="{'is-active': tab === 0 }" @click="tab = 0">Sight</a>
+        <a :class="{'is-active': tab === 1 }" @click="tab = 1">Sound</a>
+        <a :class="{'is-active': tab === 2 }" @click="tab = 2">Cognition</a>
+        <!-- <a :class="{'is-active': tab === 3 }" @click="tab = 3">Read/Write</a> -->
       </p>
 
-      <a v-for="item in list" :key="item.id" class="panel-block">
-          <b-switch v-for="control in item.controls"
-                :key="control.id"
-                v-model="filters[control.id]"
-                ></b-switch>
-        <!-- <small class="desc">{{item.description}}</small> -->
-                {{item.title}}
-      </a>
+      <div v-if="tab === 0">
+        <a v-for="item in list" :key="item.id" class="panel-block">
+            <b-switch v-for="control in item.controls"
+                  :key="control.id"
+                  v-model="filters[control.id]"
+                  ></b-switch>
+          <!-- <small class="desc">{{item.description}}</small> -->
+                  {{item.title}}
+        </a>
 
-      <a v-for="item in overlays" :key="item.id" class="panel-block">
-          <b-switch v-model="overlaysModel[item.id]"
-                ></b-switch>
-        <!-- <small class="desc">{{item.description}}</small> -->
-                {{item.title}}
-      </a>
+        <a v-for="item in overlays" :key="item.id" class="panel-block">
+            <b-switch v-model="overlaysModel[item.id]"
+                  ></b-switch>
+          <!-- <small class="desc">{{item.description}}</small> -->
+                  {{item.title}}
+        </a>
 
-      <div class="panel-block">
-        <button class="button is-link is-outlined is-fullwidth" @click="clear">Clear All</button>
+        <div class="panel-block">
+          <button class="button is-link is-outlined is-fullwidth" @click="clear">Clear All for Sight</button>
+        </div>
       </div>
+
+
+      <div v-if="tab === 1">
+        <a class="panel-block" :class="{'is-active': volume === 1 }" @click='setVolume(1)'>
+          <span class="panel-icon">
+            <i class="material-icons">
+                volume_up
+            </i>
+          </span>
+          No Hearing Loss
+        </a>
+        <a class="panel-block" :class="{'is-active': volume === .2 }" @click='setVolume(.2)'>
+          <span class="panel-icon">
+            <i class="material-icons">
+                volume_down
+            </i>
+          </span>
+          Mild Hearing Loss
+        </a>
+
+        <a class="panel-block" :class="{'is-active': volume === .05 }" @click='setVolume(.05)'>
+          <span class="panel-icon">
+            <i class="material-icons">
+                volume_mute
+            </i>
+          </span>
+          Moderate Hearing Loss
+        </a>
+
+        <a class="panel-block" :class="{'is-active': volume === .01 }" @click='setVolume(.01)'>
+          <span class="panel-icon">
+            <i class="material-icons">
+                volume_off
+            </i>
+          </span>
+          Severe Hearing Loss
+        </a>
+      </div>
+
+      
     </nav>
 
     <!-- <fuzzy /> -->
@@ -113,7 +155,9 @@
     data() {
       return {
         filters: {},
-        overlaysModel: {}
+        overlaysModel: {},
+        tab: 0,
+        volume: -1
       };
     },
     watch: {
@@ -150,7 +194,7 @@
       ...mapGetters(['isPanelOpen', 'list', 'active', 'overlays', 'activeOverlay'])
     },
     methods: {
-      ...mapActions(['togglePanel', 'toggle', 'clear', 'toggleOverlay']),
+      ...mapActions(['togglePanel', 'toggle', 'clear', 'toggleOverlay', 'removeOverlays']),
       contains(id) {
         return this.active.indexOf(id) > -1;
       },
@@ -159,10 +203,15 @@
         return this.activeOverlay.id === id;
       },
       setVolume(newVolume) {
+        this.volume = newVolume;
         EventBus.$emit('setVolume', newVolume);
       },
       switcher(id) {
         console.log('trying to switch', id);
+      },
+      clearAll() {
+        this.clear();
+        this.removeOverlays();
       }
     },
     components: {
@@ -185,9 +234,14 @@
   #A11y {
     height: 100vh;
     background-color: rgba(255, 255, 255, .85);
+    font-weight: bold;
   }
 
   .panel {
     height: 100%;
+  }
+  .panel-icon {
+    width: 2em;
+    height: 1.5em;
   }
 </style>

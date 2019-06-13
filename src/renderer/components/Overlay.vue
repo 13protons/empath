@@ -23,7 +23,7 @@
 <style lang="scss">
   #overlay {
     position: fixed;
-    width: 100vh;
+    width: 100%;
     height: calc(100vh - 3em);
     pointer-events: none;
     background-size: contain;
