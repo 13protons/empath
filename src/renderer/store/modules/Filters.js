@@ -70,6 +70,7 @@ const actions = {
   clear(context) {
     context.commit('removeAll');
     EventBus.$emit('setVolume', 1);
+    EventBus.$emit('simParkinsons', false);
   },
 };
 

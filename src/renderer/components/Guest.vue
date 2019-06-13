@@ -72,11 +72,16 @@
           this.$refs.guest.send('set-volume', param);
         }
       },
+      simParkinsons(param) {
+      if (this.$refs.guest) {
+          this.$refs.guest.send('sim-parkinsons', param);
+        }
+      },
       setDevTools(bool) {
         if (bool) {
-          // this.$refs.guest.openDevTools();
+          this.$refs.guest.openDevTools();
         } else {
-          // this.$refs.guest.closeDevTools();
+          this.$refs.guest.closeDevTools();
         }
       }
     },
@@ -103,6 +108,7 @@
 
       EventBus.$on('back', this.back);
       EventBus.$on('setVolume', this.setVolume);
+      EventBus.$on('simParkinsons', this.simParkinsons);
     }
   };
 </script>
