@@ -1,5 +1,5 @@
 <template>
-  <div class="guest" :style="styleObject">
+  <div class="guest">
     <webview id="guest" ref="guest" :preload="preload" :src="defaultSrc"></webview>
   </div>
 </template>

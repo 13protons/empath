@@ -4,7 +4,7 @@
       <top-bar />
     </div>
     
-    <div class="main">
+    <div class="main" :style="styleObject">
       <overlay />
       <guest />
     </div>
@@ -36,7 +36,12 @@
       return {};
     },
     computed: {
-      ...mapGetters(['isPanelOpen', 'areOptionsOpen', 'list'])
+      ...mapGetters(['isPanelOpen', 'active', 'areOptionsOpen', 'list']),
+      styleObject() {
+        return {
+          filter: this.active.reduce((acc, item) => (`${acc} url(#${item}) `), '')
+        };
+      }
     },
     components: {
       TopBar,
