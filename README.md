@@ -2,11 +2,11 @@
 
 ## See the web through the eyes of others.
 
-Empathy Browser simulates how people with different disabilities experience the web. It builds empathy and promotes inclusion. This web browser uses various technologies to simulate the mismatch between the diversity of human capabilities and the internet.
+Empathy Browser is a tool that aims to simulate how people with different abilities experience the web. Twenty percent of all internet users experience some form of disibiliy, and this can help build empathy and promote inclusion by simulating the mismatch between the diversity of human capabilities and the interfaces we all use on the internet.
 
-Websites and digital materials that are not designed with accessibility in-mind exclude a significant population of potential users. Empathy Browser allows professionals, such as web developers and designers, to experience their projects in ways that relate them to users with a different array of abilities.
+Websites and digital materials that are not designed with accessibility in mind may exclude this population of potential users. Empathy Browser allows professionals, such as web developers and designers, to experience their projects in ways that help them relate to those with a different array of abilities.
 
-By experiencing a simulation of common disabilities, Empathy Browser will help you promote true diversity in a digital world. It will change the way technology professionals think about inclusive design, thus transforming technology and positively impacting the world.
+We hope that by providing a simulation of common disabilities we are able to change the way technology professionals think about inclusive design, leading to transformasions in the technology they build and positively impacting the world.
 
 ---
 
