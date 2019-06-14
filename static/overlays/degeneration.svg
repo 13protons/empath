@@ -1,8 +1,8 @@
 <svg width="200" height="200"
   xmlns="http://www.w3.org/2000/svg">
 
-  <title>Abrasion</title>
-  <desc>Single irregular visual anomoly</desc>
+  <title>Floaters</title>
+  <desc>Spotty Vision</desc>
   <metadata>
     <author>Alan Languirand - alan@13protons.com</author>
     <version>0.0.1</version>
@@ -37,10 +37,10 @@
     </feMerge>
   </filter>
 
-  <circle cx="50" cy="50" r="30"
-    style="fill: black; filter: url(#splat2);" />
-  <circle cx="70" cy="80" r="20"
-    style="fill: black; filter: url(#splat2);" />
-  <circle cx="70" cy="40" r="30"
-    style="fill: black; filter: url(#splat1);" />
+
+  <rect x="14.24" y="27.94" width="52.34" height="52.34" transform="matrix(0.16, -0.99, 0.99, 0.16, -29.83, 61.37)" style="fill: black; filter: url(#splat1);"/>
+  <circle cx="142.54" cy="46.84" r="28" style="fill: black; filter: url(#splat2);"/>
+  <ellipse cx="102.54" cy="110.84" rx="28" ry="20" style="fill: black; filter: url(#splat2);"/>
+  <ellipse cx="31.04" cy="152.84" rx="15.5" ry="6" style="fill: black; filter: url(#splat1);"/>
+  <polygon points="58.34 93.62 41.32 90.34 28.97 102.5 26.83 85.3 11.45 77.31 27.14 69.96 29.99 52.86 41.83 65.52 58.97 62.94 50.59 78.11 58.34 93.62" style="fill: black; filter: url(#splat2);"/>
 </svg> 

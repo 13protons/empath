@@ -1,8 +1,7 @@
 <template>
   <div id="A11y">
     <nav class="panel">
-
-      <div class="panel-heading level">
+      <div class="panel-heading level is-mobile">
         <div class="level-left">
           <p class="level-item">
           <i class="material-icons">
@@ -34,6 +33,10 @@
       </p>
 
       <div v-if="tab === 0">
+        <div class="panel-block">
+          Color Anomoly
+        </div>
+
         <a v-for="item in list" :key="item.id" class="panel-block">
             <b-switch v-for="control in item.controls"
                   :key="control.id"
@@ -43,13 +46,17 @@
                   {{item.title}}
         </a>
 
+        <div class="panel-block">
+          Obstruction Issues
+        </div>
+
         <a v-for="item in overlays" :key="item.id" class="panel-block">
             <b-switch v-model="overlaysModel[item.id]"
                   ></b-switch>
           <!-- <small class="desc">{{item.description}}</small> -->
                   {{item.title}}
         </a>
-
+        
         <div class="panel-block">
           <button class="button is-link is-outlined is-fullwidth" @click="clear">Clear All for Sight</button>
         </div>
@@ -57,6 +64,7 @@
 
 
       <div v-if="tab === 1">
+        
         <a class="panel-block" :class="{'is-active': volume === 1 }" @click='setVolume(1)'>
           <span class="panel-icon">
             <i class="material-icons">
@@ -202,13 +210,25 @@
 
 <style lang="scss" >
   #A11y {
-    height: 100vh;
-    background-color: rgba(255, 255, 255, .85);
+    height: 100%;
+    background-color: rgba(255, 255, 255, .92);
     font-weight: bold;
+    overflow: scroll;
   }
 
   .panel {
     height: 100%;
+    max-height: 100%;
+    overflow: scroll;
+    .panel-heading {
+      position: fixed;
+      width: 80%;
+      max-width: 360px;
+      z-index: 1000;
+    }
+    .panel-tabs {
+      margin-top: 4em;
+    }
   }
   .panel-icon {
     width: 2em;

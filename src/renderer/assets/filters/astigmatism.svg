@@ -31,13 +31,13 @@
       <feGaussianBlur in="R3" result="R4" stdDeviation="0" />
 
       <!-- Left duplication -->
-      <feMorphology operator="erode" radius="1" in="L1" resulst="L2"/>
+      <!-- <feMorphology operator="erode" radius="1" in="L1" resulst="L2"/> -->
 
-      <feComponentTransfer in="L2" result="L3">
+      <!-- <feComponentTransfer in="L2" result="L3">
         <feFuncA type="table" tableValues="0 0.3"/>
-      </feComponentTransfer>
+      </feComponentTransfer> -->
 
-      <feGaussianBlur in="L3" result="L4" stdDeviation="0" />
+      <!-- <feGaussianBlur in="L3" result="L4" stdDeviation="0" /> -->
       
       <!-- Merge results -->
       <feMerge>

@@ -1,6 +1,6 @@
 <svg>
-  <title>Deuteranomaly</title>
-  <desc></desc>
+  <title>Green Weak (Deuteranomaly)</title>
+  <desc>A type of anomalous trichromatic vision in which the second, green-sensitive, cones have decreased sensitivity. It is an X-linked trait, affecting about 5 per cent of white males in the U.S.A. and 0.25 per cent of females, and is the most common color vision deficiency.</desc>
 
   <defs>
     <filter id="deuteranomaly_filter"  x="0" y="0" width="100%" height="100%">
@@ -14,7 +14,6 @@
               type="matrix"
               values="0.8, 0.2, 0, 0, 0 0.258, 0.742, 0, 0, 0 0, 0.142, 0.858, 0, 0 0, 0, 0, 1, 0"
             />
-
     </filter>
 
     <!-- <animate

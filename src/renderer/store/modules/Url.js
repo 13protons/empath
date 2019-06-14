@@ -1,5 +1,5 @@
 import { createValidUrlFromFragment } from './url-util';
-const homeUrl = 'https://github.com/13protons/empath#empath';
+const homeUrl = 'https://github.com/13protons/empath/blob/master/README.md';
 const state = {
   url: homeUrl,
   loading: false,

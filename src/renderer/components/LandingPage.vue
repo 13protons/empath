@@ -69,11 +69,11 @@
     overflow: hidden;
   }
   .side-panel {
-    position: absolute;
+    position: fixed;
     right: 0px;
     width: 80%;
     max-width: 360px;
-    height: 100vh;
+    height: 100%;
   }
 
   #wrapper {

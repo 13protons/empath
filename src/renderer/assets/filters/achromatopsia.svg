@@ -1,6 +1,6 @@
 <svg>
-  <title>Achromatopsia</title>
-  <desc></desc>
+  <title>No Color (Achromatopsia)</title>
+  <desc>Achromatopsia, also known as total color blindness, is a medical syndrome that exhibits symptoms relating to at least five conditions. The term may refer to acquired conditions such as cerebral achromatopsia, but it typically refers to an autosomal recessive congenital color vision condition, the inability to perceive color and to achieve satisfactory visual acuity at high light levels. From Wikipedia</desc>
 
   <defs>
     <filter id="achromatopsia_filter"  x="0" y="0" width="100%" height="100%">

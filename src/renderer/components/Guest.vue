@@ -80,14 +80,16 @@
         this.$refs.guest.setAudioMuted(false);
       },
       setVolume(param) {
+        console.log('trying to send volume', param);
         if (this.$refs.guest) {
+          console.log('can do it');
           this.$refs.guest.send('set-volume', param);
         }
       },
       simParkinsons(param) {
         if (param) {
           this.parkinsonsActive = true;
-          this.$refs.guest.executeJavaScript('document.body.style.cursor = "none";')
+          this.$refs.guest.executeJavaScript('document.body.style.cursor = "none";');
 
           this.startTrackingCursor();
         } else {

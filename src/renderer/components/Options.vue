@@ -77,7 +77,7 @@
 <style lang="scss" >
   #Options {
     height: 100vh;
-    background-color: rgba(255, 255, 255, .85);
+    background-color: rgba(255, 255, 255, .92);
     font-weight: bold;
   }
 
