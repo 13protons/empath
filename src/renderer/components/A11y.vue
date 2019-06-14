@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <p class="panel-tabs">
+      <p class="panel-tabs top-block">
         <a :class="{'is-active': tab === 0 }" @click="tab = 0">Sight</a>
         <a :class="{'is-active': tab === 1 }" @click="tab = 1">Sound</a>
         <a :class="{'is-active': tab === 3 }" @click="tab = 3">Touch</a>
@@ -226,7 +226,7 @@
       max-width: 360px;
       z-index: 1000;
     }
-    .panel-tabs {
+    .top-block {
       margin-top: 4em;
     }
   }

@@ -2,7 +2,7 @@
   <div id="Options">
     <nav class="panel">
 
-      <div class="panel-heading level">
+      <div class="panel-heading level is-mobile">
         <div class="level-left">
           <p class="level-item">
           <i class="material-icons has-text-primary	">
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <a class="panel-block" @click="toggleDevTools" :class="{'is-active': devToolsOpen }">
+      <a class="panel-block top-block" @click="toggleDevTools" :class="{'is-active': devToolsOpen }">
           <span class="panel-icon">
             <i class="material-icons" v-if="devToolsOpen">
                 remove_circle
