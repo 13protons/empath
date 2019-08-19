@@ -1,8 +1,8 @@
-# Empath
+# Empathy Browser
 
 ## See the web through the eyes of others.
 
-The Empath Browser is a tool that aims to simulate how people with different abilities experience the web. Twenty percent of all internet users experience some form of disibiliy, and this can help build empathy and promote inclusion by simulating the mismatch between the diversity of human capabilities and the interfaces we all use on the internet.
+The Empathy Browser is a tool that aims to simulate how people with different abilities experience the web. Twenty percent of all internet users experience some form of disibiliy, and this can help build empathy and promote inclusion by simulating the mismatch between the diversity of human capabilities and the interfaces we all use on the internet.
 
 Websites and digital materials that are not designed with accessibility in mind may exclude this population of potential users. Empathy Browser allows professionals, such as web developers and designers, to experience their projects in ways that help them relate to those with a different array of abilities.
 
